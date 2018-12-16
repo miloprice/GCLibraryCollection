@@ -41,6 +41,7 @@ LibraryCollection::Application.routes.draw do
   post 'scrape' => 'search#scrape'
 
   post 'send_reminders' => 'users#send_reminders'
+  get 'download_users_csv' => 'users#download_csv', format: :csv
 
   post 'generate_report' => 'document_generator#new_report'
   get 'new_author_ajax' => 'authors#new_ajax'
