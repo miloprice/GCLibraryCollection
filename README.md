@@ -3,7 +3,7 @@ LibraryCollection
 
 A public web interface for patrons to view and search a library collection.
 
-Ruby 2.0.0
+Ruby 2.3.5
 
 ###After you pull from origin, run:
  - bundle install --without production
