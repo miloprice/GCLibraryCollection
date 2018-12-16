@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def download_csv
     user_download = UserDownload.new
 
-    send_data user_download.to_csv, filename: 'patrons.csv'
+    send_data user_download.to_csv, filename: 'patrons.csv', type: :csv
   end
 
   private
