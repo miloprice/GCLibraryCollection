@@ -21,6 +21,7 @@ describe UsersController do
       expect(delete :destroy, id: @user.id).to redirect_to(new_user_session_path)
       expect(get :show, id: @user.id).to redirect_to(new_user_session_path)
       expect(post :send_reminders).to redirect_to(new_user_session_path)
+      expect(get :download_csv).to redirect_to(new_user_session_path)
     end
   end
 
@@ -37,6 +38,7 @@ describe UsersController do
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
       expect(post :send_reminders).to redirect_to(root_path)
+      expect(get :download_csv).to redirect_to(root_path)
     end
 
     it 'permits patrons to see their own show page' do
@@ -90,6 +92,11 @@ describe UsersController do
       expect(response.status).to eq(200)
     end
 
+    it "GET 'send_reminders'" do
+      get :download_csv
+      expect(response.status).to eq(200)
+    end
+
     it "resets last_sent variable when sending overdue reminders" do
       expect{post :send_reminders}.to change{OverdueMailer.last_sent}
     end
@@ -134,6 +141,11 @@ describe UsersController do
 
     it "GET 'edit'" do
       get :edit, id: @user
+      expect(response.status).to eq(200)
+    end
+
+    it "GET 'send_reminders'" do
+      get :download_csv
       expect(response.status).to eq(200)
     end
 
