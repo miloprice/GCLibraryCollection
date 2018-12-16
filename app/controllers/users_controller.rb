@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include UserRoleHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:edit, :update, :index, :send_reminders]
+  before_filter :is_librarian?, only: [:edit, :update, :index, :send_reminders, :download_csv]
   before_filter :is_admin?, only: :destroy
   before_filter :find_user, only: [:show, :edit, :destroy, :update]
   helper_method :sort_column, :sort_direction
@@ -74,6 +74,12 @@ class UsersController < ApplicationController
     OverdueMailer.last_sent = Date.today
     flash[:notice] = "Mail successfully sent"
     redirect_to :back
+  end
+
+  def download_csv
+    user_download = UserDownload.new
+
+    send_data user_download.to_csv, filename: 'patrons.csv'
   end
 
   private
