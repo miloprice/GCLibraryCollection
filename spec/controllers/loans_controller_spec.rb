@@ -220,4 +220,24 @@ describe LoansController do
       end
     end
   end
+
+  describe 'GET download_csv' do
+    context 'as non-librarian' do
+      before { sign_in @user }
+
+      it 'redirects home' do
+        expect(get :index).to redirect_to(root_path)
+      end
+    end
+
+    context 'as librarian' do
+      before { sign_in @librarian }
+
+      it "doesn't redirect to home" do
+        get :index
+        expect(response).to_not be_redirect
+        expect(response).to be_success
+      end
+    end
+  end
 end
