@@ -4,6 +4,7 @@ class LoanDownload < CsvDownload
 
     def model_attributes
       %w{
+        id
         user_id
         book_id
         start_date

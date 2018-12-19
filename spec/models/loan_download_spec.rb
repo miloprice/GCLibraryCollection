@@ -9,8 +9,8 @@ describe LoanDownload do
 
     it 'generates a CSV' do
       expect(subject.to_csv).to eq(
-        "User,Book,Start date,Due date,Returned date,Renewal count\n" \
-        "#{loan.user_id},#{loan.book_id},#{loan.start_date},#{loan.due_date},#{loan.returned_date},#{loan.renewal_count}\n"
+        "Id,User,Book,Start date,Due date,Returned date,Renewal count\n" \
+        "#{loan.id},#{loan.user_id},#{loan.book_id},#{loan.start_date},#{loan.due_date},#{loan.returned_date},#{loan.renewal_count}\n"
       )
     end
   end
