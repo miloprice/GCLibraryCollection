@@ -92,7 +92,7 @@ describe UsersController do
       expect(response.status).to eq(200)
     end
 
-    it "GET 'send_reminders'" do
+    it "GET 'download_csv'" do
       get :download_csv
       expect(response.status).to eq(200)
     end
@@ -144,7 +144,7 @@ describe UsersController do
       expect(response.status).to eq(200)
     end
 
-    it "GET 'send_reminders'" do
+    it "GET 'download_csv'" do
       get :download_csv
       expect(response.status).to eq(200)
     end
