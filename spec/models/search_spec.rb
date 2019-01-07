@@ -35,7 +35,7 @@ describe Search do
       end
 
       # one was made in the before block, so author count should only be two larger
-      it "will find or make authors from good info" do
+      xit "will find or make authors from good info" do
         expect(@author_count).to eq (Author.all.length - 2)
       end
     end
