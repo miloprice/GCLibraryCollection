@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   include UserRoleHelper
 
-  before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index, :new_multi, :loan_multi]
+  before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index, :new_multi, :loan_multi, :download_csv]
   before_filter :authenticate_user!
   before_filter :find_loan, only: [:renew, :return, :show]
   helper_method :sort_column, :sort_direction
@@ -125,6 +125,12 @@ class LoansController < ApplicationController
     @loans = Loan.overdue.joins(:book, :user)
     .order(sort_column + " " + sort_direction)
     .paginate(:page => params[:page], :per_page => 50)
+  end
+
+  def download_csv
+    loan_download = LoanDownload.new(Loan)
+
+    send_data loan_download.to_csv, filename: 'loans.csv', type: :csv
   end
 
   private
